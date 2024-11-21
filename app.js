@@ -1,9 +1,9 @@
-import express from "express";
-import connect from "./schemas/index.js";
-import TodosRouter from "./routes/todos.router.js";
+import express from 'express';
+import connect from './schemas/index.js';
+import TodosRouter from './routes/todos.router.js';
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 connect();
 
@@ -12,16 +12,16 @@ app.use(express.json()); // 순서 중요
 app.use(express.urlencoded({ extended: true }));
 
 // static Middleware, express.static()을 사용하여 정적 파일을 제공합니다.
-app.use(express.static("./assets"));
+app.use(express.static('./assets'));
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  return res.json({ message: "Hi!" });
+router.get('/', (req, res) => {
+  return res.json({ message: 'Hi!' });
 });
 
-app.use("/api", [router, TodosRouter]);
+app.use('/api', [router, TodosRouter]);
 
 app.listen(PORT, () => {
-  console.log(PORT, "포트로 서버가 열렸어요!");
+  console.log(PORT, '포트로 서버가 열렸어요!');
 });
